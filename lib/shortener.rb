@@ -2,8 +2,8 @@ require "active_support/dependencies"
 
 module Shortener
 
-  autoload :ActiveRecordExtension, "shortener/active_record_extension"
   autoload :ShortenUrlInterceptor, "shortener/shorten_url_interceptor"
+  autoload :MongoidExtension, "shortener/mongoid_extension.rb"
 
   CHARSETS = {
     :alphanum => ('a'..'z').to_a + (0..9).to_a,
