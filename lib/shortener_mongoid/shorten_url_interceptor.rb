@@ -24,6 +24,7 @@ Usage:
       @not_shorten = opts[:not_shorten] || DEFAULT_NOT_SHORTEN
       @length_threshold = opts[:length_threshold] || DEFAULT_LENGTH_THRESHOLD
       @base_url = opts[:base_url] || ShortenUrlInterceptor.infer_base_url
+      @namespace = opts[:namespace] || ""
     end
 
     def delivering_email(email)
@@ -41,7 +42,7 @@ Usage:
     def shorten_url(url)
       if url.length > @length_threshold && ! @not_shorten.any?{|r| r =~ url}
         short_url = Shortener::ShortenedUrl.generate!(url)
-        File.join(@base_url, short_url.unique_key)
+        File.join(@base_url, @namespace, short_url.unique_key)
       else
         url
       end
