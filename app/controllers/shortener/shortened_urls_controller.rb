@@ -18,7 +18,7 @@ class Shortener::ShortenedUrlsController < ActionController::Base
       # for the system. You could log the request origin
       # browser type, ip address etc.
       Thread.new do
-        sl.increment!(:use_count)
+        sl.inc(:use_count, 1)
       end
       # do a 301 redirect to the destination url
       redirect_to sl.url, :status => :moved_permanently
