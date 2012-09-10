@@ -24,7 +24,7 @@ describe Shortener::ShortenUrlInterceptor do
       it("shortens for #{email_body_text}") do
         email = create_email(email_body_text)
         begin
-          short_url = Shortener::ShortenedUrl.find_by(url: url)
+          short_url = Shortener::ShortenedUrl.where(url: url).first
         rescue Mongoid::Errors::DocumentNotFound
 
         end
@@ -40,7 +40,7 @@ describe Shortener::ShortenUrlInterceptor do
       it("keeps URL for #{email_body_text}") do
         email = create_email(email_body_text)
         begin
-          short_url = Shortener::ShortenedUrl.find_by(url: url)
+          short_url = Shortener::ShortenedUrl.find(url: url).first
         rescue Mongoid::Errors::DocumentNotFound
 
         end
